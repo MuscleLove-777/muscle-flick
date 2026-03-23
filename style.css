@@ -1,0 +1,458 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #ff2d7b;
+    --cyan: #00e5ff;
+    --dark: #0a0a12;
+    --dark2: #14142a;
+    --card-bg: #1a1a2e;
+    --like-green: #00ff88;
+    --skip-red: #ff4466;
+    --text: #ffffff;
+    --text-dim: #aaaacc;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+}
+
+/* ===== Screens ===== */
+.screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.screen.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 480px;
+    width: 100%;
+}
+
+/* ===== Typography ===== */
+.title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.title-en {
+    font-size: 1.4rem;
+    color: var(--cyan);
+}
+
+.glow {
+    text-shadow: 0 0 20px var(--pink), 0 0 40px rgba(255, 45, 123, 0.3);
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+/* ===== Instructions ===== */
+.instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.instruction-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dark2);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.instruction-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    display: inline-block;
+    padding: 14px 36px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--pink), #ff6b9d);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(255, 45, 123, 0.4);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 4px 30px rgba(255, 45, 123, 0.6);
+}
+
+.btn-share {
+    background: #1da1f2;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(29, 161, 242, 0.3);
+}
+
+.btn-patreon {
+    background: linear-gradient(135deg, #ff424d, #ff6b6b);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(255, 66, 77, 0.4);
+    display: inline-block;
+    margin-top: 8px;
+}
+
+/* ===== Brand ===== */
+.brand {
+    margin-top: 32px;
+}
+
+.brand-name {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== Game Header ===== */
+.game-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    background: rgba(10, 10, 18, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.progress-text {
+    font-size: 0.85rem;
+    color: var(--cyan);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--dark2);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink), var(--cyan));
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.score-display {
+    font-size: 0.85rem;
+    color: var(--like-green);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ===== Card Area ===== */
+.card-area {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-container {
+    position: relative;
+    width: 300px;
+    height: 420px;
+    max-width: 85vw;
+    max-height: 70vh;
+}
+
+.swipe-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    cursor: grab;
+    transition: none;
+    will-change: transform;
+}
+
+.swipe-card.animate-out {
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    pointer-events: none;
+}
+
+.swipe-card.dragging {
+    cursor: grabbing;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* ===== Card Labels ===== */
+.card-label {
+    position: absolute;
+    top: 24px;
+    padding: 8px 20px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    border-radius: 8px;
+    border: 4px solid;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 5;
+    pointer-events: none;
+    letter-spacing: 2px;
+}
+
+.card-label-like {
+    right: 16px;
+    color: var(--like-green);
+    border-color: var(--like-green);
+    background: rgba(0, 255, 136, 0.15);
+    transform: rotate(15deg);
+}
+
+.card-label-skip {
+    left: 16px;
+    color: var(--skip-red);
+    border-color: var(--skip-red);
+    background: rgba(255, 68, 102, 0.15);
+    transform: rotate(-15deg);
+}
+
+/* ===== Card Overlay Tint ===== */
+.swipe-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 2;
+}
+
+.swipe-card.tint-like::after {
+    background: rgba(0, 255, 136, 0.2);
+    opacity: 1;
+}
+
+.swipe-card.tint-skip::after {
+    background: rgba(255, 68, 102, 0.2);
+    opacity: 1;
+}
+
+/* ===== Swipe Hints ===== */
+.swipe-hints {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 10;
+}
+
+.hint-skip, .hint-like {
+    font-size: 0.85rem;
+    font-weight: 700;
+    opacity: 0.4;
+}
+
+.hint-skip {
+    color: var(--skip-red);
+}
+
+.hint-like {
+    color: var(--like-green);
+}
+
+/* ===== Result Screen ===== */
+.result-container {
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 24px 16px 40px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.result-title {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.result-message {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.result-message.empty {
+    font-size: 1.6rem;
+    color: var(--skip-red);
+    font-weight: 700;
+}
+
+/* ===== Liked Grid ===== */
+.liked-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.liked-grid img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid var(--pink);
+    box-shadow: 0 4px 15px rgba(255, 45, 123, 0.3);
+    animation: popIn 0.3s ease-out both;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.liked-grid img:nth-child(1) { animation-delay: 0s; }
+.liked-grid img:nth-child(2) { animation-delay: 0.05s; }
+.liked-grid img:nth-child(3) { animation-delay: 0.1s; }
+.liked-grid img:nth-child(4) { animation-delay: 0.15s; }
+.liked-grid img:nth-child(5) { animation-delay: 0.2s; }
+.liked-grid img:nth-child(6) { animation-delay: 0.25s; }
+.liked-grid img:nth-child(7) { animation-delay: 0.3s; }
+.liked-grid img:nth-child(8) { animation-delay: 0.35s; }
+.liked-grid img:nth-child(9) { animation-delay: 0.4s; }
+.liked-grid img:nth-child(10) { animation-delay: 0.45s; }
+
+.result-stats {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+}
+
+/* ===== Result Buttons ===== */
+.result-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.result-buttons .btn {
+    width: 280px;
+    max-width: 100%;
+}
+
+/* ===== Patreon CTA ===== */
+.patreon-cta {
+    background: linear-gradient(135deg, rgba(255, 66, 77, 0.1), rgba(255, 45, 123, 0.1));
+    border: 1px solid rgba(255, 66, 77, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 8px;
+}
+
+.patreon-cta p {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 4px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 380px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .card-container {
+        width: 260px;
+        height: 370px;
+    }
+
+    .liked-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .card-container {
+        width: 340px;
+        height: 480px;
+    }
+}
